@@ -1,0 +1,16 @@
+{
+  "name": "functions",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "func start",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "durable-functions": "^3.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "typescript": "^5"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "FUNCTIONS_EXTENSION_VERSION": "~4",
+    "AZURE_FUNCTIONS_ENVIRONMENT": "Development",
+    "NODE_ENV": "development",
+    "DATABASE_URL": "Server=localhost;Database=myapp;User Id=sa;Password=YourPassword123!;Encrypt=false;TrustServerCertificate=true;",
+    "AZURE_STORAGE_CONNECTION_STRING": "UseDevelopmentStorage=true"
+  },
+  "ConnectionStrings": {}
+}
