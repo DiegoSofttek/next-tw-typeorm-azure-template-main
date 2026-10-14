@@ -22,33 +22,33 @@ import { useAuth } from "@/lib/hooks/useAuth";
  */
 
 interface ProtectedRouteProps {
-	children: React.ReactNode;
-	redirectTo?: string;
-	loadingComponent?: React.ReactNode;
+  children: React.ReactNode;
+  redirectTo?: string;
+  loadingComponent?: React.ReactNode;
 }
 
 export function ProtectedRoute({
-	children,
-	redirectTo = "/auth/login",
-	loadingComponent = <div className="p-8">Loading...</div>,
+  children,
+  redirectTo = "/auth/login",
+  loadingComponent = <div className="p-8">Loading...</div>,
 }: ProtectedRouteProps) {
-	const { user, loading } = useAuth();
-	const router = useRouter();
+  const { user, loading } = useAuth();
+  const router = useRouter();
 
-	useEffect(() => {
-		console.log(user);
-		if (!loading && !user) {
-			router.push(redirectTo);
-		}
-	}, [user, loading, router, redirectTo]);
+  useEffect(() => {
+    console.log(user);
+    if (!loading && !user) {
+      router.push(redirectTo);
+    }
+  }, [user, loading, router, redirectTo]);
 
-	if (loading) {
-		return <>{loadingComponent}</>;
-	}
+  if (loading) {
+    return <>{loadingComponent}</>;
+  }
 
-	if (!user) {
-		return null; // Return null while redirecting
-	}
+  if (!user) {
+    return null; // Return null while redirecting
+  }
 
-	return <>{children}</>;
+  return <>{children}</>;
 }
