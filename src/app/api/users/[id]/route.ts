@@ -1,14 +1,25 @@
 import { NextRequest, NextResponse } from "next/server";
 import { UserRepository } from "@/infra/repositories/UserRepository";
+import { parseUserId } from "./userId";
 
 type Params = { params: { id: string } };
 
+function getValidatedUserId(idParam: string) {
+  const parsed = parseUserId(idParam);
+  if ("errorResponse" in parsed) {
+    return parsed;
+  }
+
+  return { id: parsed.id };
+}
+
 export async function GET(req: NextRequest, { params }: Params) {
   try {
-    const id = Number(params.id);
-    if (isNaN(id)) {
-      return NextResponse.json({ error: "ID inválido" }, { status: 400 });
+    const parsed = getValidatedUserId(params.id);
+    if ("errorResponse" in parsed) {
+      return parsed.errorResponse;
     }
+    const { id } = parsed;
 
     const user = await UserRepository.findById(id);
     if (!user) {
@@ -30,10 +41,11 @@ export async function GET(req: NextRequest, { params }: Params) {
 
 export async function PATCH(req: NextRequest, { params }: Params) {
   try {
-    const id = Number(params.id);
-    if (isNaN(id)) {
-      return NextResponse.json({ error: "ID inválido" }, { status: 400 });
+    const parsed = getValidatedUserId(params.id);
+    if ("errorResponse" in parsed) {
+      return parsed.errorResponse;
     }
+    const { id } = parsed;
 
     const body = await req.json();
     const { email, name } = body;
