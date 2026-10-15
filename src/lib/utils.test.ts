@@ -17,5 +17,13 @@ describe('cn utility function', () => {
   it('should handle empty strings', () => {
     expect(cn('', 'foo')).toBe('foo')
   })
+
+  it('should let later Tailwind classes win across multiple inputs', () => {
+    expect(cn('text-left bg-red-500', undefined, ['text-center', 'bg-blue-500'])).toBe('text-center bg-blue-500')
+  })
+
+  it('should preserve non-conflicting classes while removing falsy values', () => {
+    expect(cn('flex', null, false, 'items-center', 'justify-between')).toBe('flex items-center justify-between')
+  })
 })
 
