@@ -94,5 +94,15 @@
     "tsx": "^4.19.2",
     "typescript": "^5",
     "vitest": "^2.1.9"
+  },
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "branches": 10.0,
+        "functions": 10.0,
+        "lines": 10.0,
+        "statements": 10.0
+      }
+    }
   }
 }

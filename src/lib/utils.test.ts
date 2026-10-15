@@ -17,5 +17,11 @@ describe('cn utility function', () => {
   it('should handle empty strings', () => {
     expect(cn('', 'foo')).toBe('foo')
   })
+
+  it('should prefer the last conflicting Tailwind utility across variants', () => {
+    expect(cn('text-sm text-lg', 'text-xs', undefined, null, ['font-medium'])).toBe(
+      'text-xs font-medium',
+    )
+  })
 })
 
